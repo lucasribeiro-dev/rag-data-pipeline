@@ -1,9 +1,0 @@
-{
-  "mcpServers": {
-    "trade-knowledge-base": {
-      "command": "/home/atom/Documents/ai-projects/rag-data-pipeline/.venv/bin/python",
-      "args": ["/home/atom/Documents/ai-projects/rag-data-pipeline/mcp_server.py"],
-      "cwd": "/home/atom/Documents/ai-projects/rag-data-pipeline"
-    }
-  }
-}

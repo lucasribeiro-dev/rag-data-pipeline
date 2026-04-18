@@ -25,7 +25,9 @@ make store       DB=./db_docs                           # store pending transcri
 ```
 
 `make ingest` accepts `TYPE=auto|youtube|media|audio|video|pdf` to override auto-detection.
-`DB=` overrides `CHROMA_DB_PATH` for this run. For the MCP server, set the `CHROMA_DB_PATH` env var in your MCP client config.
+`DB=` overrides `CHROMA_DB_PATH` for this run.
+
+To query this knowledge base from Claude Code, install the official Chroma MCP server (`uvx chroma-mcp --client-type persistent --data-dir ./db`) rather than maintaining a custom one here.
 
 ## Architecture
 
@@ -58,7 +60,6 @@ discover (Source) → fetch/extract (yt-dlp | Whisper | pypdf) → clean → chu
 - `storage/status.py` — JSON status tracker (downloaded/transcribed/stored per item); `get()` has lazy `youtube__` fallback so legacy bare-keyed entries still resolve
 - `bot/rag.py` — retrieval + OpenAI completion with chat history
 - `bot/prompts.py` — system prompt template
-- `mcp_server.py` — FastMCP server exposing `search_knowledge_base` and `knowledge_base_stats`; reads `CHROMA_DB_PATH` from env
 
 **Key design decisions:**
 - Items are keyed `{source_type}__{slug}` (e.g. `youtube__Foo`, `pdf__report_ch1`, `audio__lesson_01`). `slug` uses `yt_dlp.utils.sanitize_filename`; path separators flatten to `_`. Collision guard appends a 6-char sha1 prefix when slugs clash inside one source.
