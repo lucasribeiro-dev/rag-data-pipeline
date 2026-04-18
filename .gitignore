@@ -1,0 +1,37 @@
+# --- Secrets & environment ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets/
+
+# --- Data & generated artifacts ---
+data/
+db/
+db_*/
+*.mp3
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+dist/
+build/
+.venv/
+venv/
+
+# --- Editors / OS ---
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# --- Plans / local agent state ---
+.claude/
